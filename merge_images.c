@@ -17,6 +17,8 @@
 #define CANVAS_W (RAW_W * 10) 
 #define CANVAS_H (RAW_H * 10)
 
+
+
 typedef struct {
     unsigned char* data;
     int x_offset; // 전체 캔버스에서의 좌상단 x 좌표
@@ -183,9 +185,10 @@ int main() {
     int start_x = CANVAS_W / 4;
     int start_y = CANVAS_H / 4;
 
+    unsigned char **img = get_image(100);
     for (int y = 0; y < GRID_SIZE; y++) {
         for (int x = 0; x < GRID_SIZE; x++) {
-            grid[y][x].data = get_image(100);
+            grid[y][x].data = &(img[x][y]);
 
             if (x == 0 && y == 0) {
                 grid[y][x].x_offset = start_x;
