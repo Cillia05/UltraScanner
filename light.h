@@ -153,15 +153,15 @@ static int init_lights(void) {
 }
 
 static void finish_lights(void) {
-	fb_clear();
+    fb_clear();
     fb_flush();
     close(spi_fd);
 }
 
 static int next_light(void) {
-	if (++cur_light_x > HEIGHT) {
-		cur_light_x == 0;
-		if (++cur_light_y > HEIGHT) return 1;
+	if (++cur_light_x == WIDTH) {
+		cur_light_x = 0;
+		if (++cur_light_y == HEIGHT) return 1;
 	}
 	fb_clear();
     fb_set_pixel(cur_light_x, cur_light_y, 1);
